@@ -93,7 +93,7 @@ function lista_cita_medicasxcliente(req, res, next) {
     if (!errors.isEmpty()) {
         return res.json({ successful: false, errors: errors.array() });
     }
-    Cita.lista_cita_medicasxcliente(req.query).then((respuerta) => {
+    Cita.lista_cita_medicasxcliente(req.query.id).then((respuerta) => {
         return res.send(respuerta);
     });
 }
