@@ -14,7 +14,8 @@ module.exports = {
     lista_medicamentos,
     medicamento_resetado,
     input_cita_medica,
-    lista_cita_medicasxcliente
+    lista_cita_medicasxcliente,
+    lista_medicamentos_recetados
 };
 
 async function lista_cita_estado() {
@@ -172,6 +173,16 @@ async function lista_cita_medicasxcliente(id) {
     inner join users as u on cm.id_user = u.id
     inner join user_especialidads as ue on u.id_especialidad = ue.id
     where cm.id_cliente = ${id}`;
+    var data = await Cita.sequelize.query(select, { type: QueryTypes.SELECT });
+    return ({ successful: true, data: data });
+}
+
+async function lista_medicamentos_recetados(id) {
+    var select = `select mr.*, m.nombre_medicamento, u.nombre_completo from med_resetados as mr
+    inner join medicamentos as m on mr.id_medicamento = m.id
+    inner join cita_medicas as cm on cm.id = mr.id_cita_medica
+    inner join users as u on u.id = cm.id_user
+    where cm.id_cliente =  ${id}`;
     var data = await Cita.sequelize.query(select, { type: QueryTypes.SELECT });
     return ({ successful: true, data: data });
 }

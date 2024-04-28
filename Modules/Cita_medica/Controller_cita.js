@@ -10,7 +10,8 @@ module.exports = {
     lista_medicamentos,
     medicamento_resetado,
     input_cita_medica,
-    lista_cita_medicasxcliente
+    lista_cita_medicasxcliente,
+    lista_medicamentos_recetados
 };
 
 function lista_cita_estado(req, res, next) {
@@ -93,6 +94,16 @@ function lista_cita_medicasxcliente(req, res, next) {
         return res.json({ successful: false, errors: errors.array() });
     }
     Cita.lista_cita_medicasxcliente(req.query).then((respuerta) => {
+        return res.send(respuerta);
+    });
+}
+
+function lista_medicamentos_recetados(req, res, next) {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.json({ successful: false, errors: errors.array() });
+    }
+    Cita.lista_medicamentos_recetados(req.query.id).then((respuerta) => {
         return res.send(respuerta);
     });
 }

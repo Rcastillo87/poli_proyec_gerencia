@@ -179,6 +179,25 @@ const medicamento_resetado = [
     body('medicamentos.*.cantidad').isInt({min: 1}).withMessage("Solo se admiten numero enteros mayores a 0"),
 ];
 
+
+const lista_medicamentos_recetados = [
+    check('id', "Invalido User")
+    .isInt()
+    .exists()
+    .custom((data) => {
+        return new Promise((resolve, reject) => {
+            User.findOne({ where: { id: data } }).then((Exist) => {
+                if (Exist === null) {
+                    reject(new Error("User no existe."));
+                } else {
+                    resolve(true);
+                }
+            });
+        });
+    }),
+];
+
+
 module.exports = {
     input_cita_medica,
     lista_cita_medicasxcliente,
@@ -186,5 +205,6 @@ module.exports = {
     lista_citasxuserxestado,
     cita_diagnostico,
     input_medicamento,
-    medicamento_resetado
+    medicamento_resetado,
+    lista_medicamentos_recetados
 };

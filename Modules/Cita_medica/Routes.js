@@ -12,9 +12,10 @@ app.post('/admin/medicamento/input_medicamento', Val.input_medicamento, Cita.inp
 app.get('/admin/medicamento/lista_medicamentos', Cita.lista_medicamentos);
 app.post('/admin/medicamento/medicamento_resetado', Val.medicamento_resetado, Cita.medicamento_resetado);
 
+
 app.post('/clientes/cita_medica/input_cita_medica', Val.input_cita_medica, Cita.input_cita_medica);
 app.get('/clientes/cita_medica/lista_cita_medicasxcliente', Val.lista_cita_medicasxcliente, Cita.lista_cita_medicasxcliente);
-
+app.get('/clientes/medicamento/lista_medicamentos_recetados', Val.lista_medicamentos_recetados, Cita.lista_medicamentos_recetados);
 
 
 module.exports = app;   
