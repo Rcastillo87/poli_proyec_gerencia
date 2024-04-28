@@ -53,7 +53,6 @@ const input_user = [
         });
       }
     }),
-  //body("correo").isEmail().withMessage("Solo se admite Correo"),
   body("correo", "Invalido correo")
     .exists()
     .custom((data, { req }) => {

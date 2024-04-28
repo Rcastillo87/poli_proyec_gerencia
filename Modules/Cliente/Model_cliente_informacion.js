@@ -39,7 +39,6 @@ const cliente_info = sequelize.define("cliente_informacion", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-
   fecha_nacimiento: {
     type: DataTypes.DATE,
     allowNull: false,
