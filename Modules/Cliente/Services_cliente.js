@@ -31,6 +31,7 @@ async function login(data) {
     return await bcrypt.compare(data.password, user.password).then(async (respuerta) => {
         if (respuerta) {
             var obj = {
+                id: user.id,
                 correo: user.correo,
                 createdAt: user.createdAt,
                 updatedAt: user.updatedAt
